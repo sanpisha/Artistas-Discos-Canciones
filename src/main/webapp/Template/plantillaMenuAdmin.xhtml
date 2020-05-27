@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Menu</title>
+        <style type="text/css">
+            body {background:url("resources/fondo.png");}
+        </style>
+    </h:head>
+
+    <h:body>
+
+        <div id="menu">
+            <ui:insert name="menu">
+                <div  id="menu">
+                    <h:form>
+                        <center><h3><h:outputText value="DISCO TIENDA"  style="color: lime"/></h3></center>
+
+
+
+
+                        <p:stack icon="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/stack.png" expanded="true">
+                            <p:menuitem  value="Cerrar Sesión " 
+                                         icon="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/home.png" 
+                                         url="inicio.xhtml"/>
+                            <p:menuitem  value="Canciones" 
+                                         icon="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/music.png" 
+                                         url="crudCancion.xhtml"/>
+                            <p:menuitem  value="Artistas" 
+                                         icon="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/portfolio.png" 
+                                         url="crudArtista.xhtml"/>
+                            <p:menuitem  value="Discos" 
+                                         icon="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/link.png" 
+                                         url="faces/crudDisco.xhtml"/>
+                        </p:stack> 
+
+                    </h:form>
+                </div>
+            </ui:insert>
+        </div>
+        <div id="content" class="center_content">
+            <ui:insert name="content">Content</ui:insert>
+        </div>
+
+    </h:body>
+
+</html>

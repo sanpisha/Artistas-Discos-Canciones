@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">>
+    <style type="text/css">
+        .ui-panelgrid.showcase-text-align-center .ui-grid-responsive .ui-panelgrid-cell {
+            text-align: center;
+        }
+
+        .customPanelGrid .ui-panelgrid-content {
+            align-items: center;
+        }
+    </style>
+    <h:body>
+
+        <ui:composition template="./Template/plantillaMenuAdmin.xhtml">
+
+            <ui:define name="content">
+                <p:panel style="widt:10px; height:590px;" >
+                    <h:form id="form" enctype="multipart/form-data">
+                        <font  face="arial" size="4" color="green" >
+                            <center>
+                                <p:outputLabel value="Agregar Disco" style="color: lime"/>
+                            </center>
+                        </font>   
+                        <font face="arial" size="3" color="white">
+                            <p:panelGrid  columns="2" layout="tabular" styleClass="showcase-text-align-center" >
+                                <f:facet name="header">
+                                    <p:graphicImage value="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/album.jpg" 
+                                                    width="200"  
+                                                    height="200"/>
+                                </f:facet>
+                                <p:outputLabel value="Nombre Disco" />
+                                <p:inputText id="nombre" required="true" value="#{crudDisco.nombre}" label="Nombre Artista"/>
+
+                                <p:outputLabel value="Artista Disco" />
+                                <p:selectOneMenu id="artista"  value="#{crudDisco.artista}" style="width:125px">
+                                    <f:selectItems  value="#{crudDisco.nombresArtistas}"/>
+                                </p:selectOneMenu>
+
+                                <p:outputLabel value="Formato "/>
+                                <p:selectOneMenu id="formatos" value="#{crudDisco.formato}" required="true">
+                                    <f:selectItem itemValue ="DVD" itemLabel ="DVD" />
+                                    <f:selectItem itemValue ="MP4" itemLabel ="MP4" />
+                                    <f:selectItem itemValue ="CASSETE" itemLabel ="CASSETE" />
+                                    <f:selectItem itemValue ="CD" itemLabel ="CD" />
+                                </p:selectOneMenu>
+
+
+                            </p:panelGrid>
+                            <br></br>
+                            <center>
+                                <p:commandButton value="Agregar" id="ajax" update="tablaDiscos"  
+                                                 style="margin-right:20px;" styleClass="ui-priority-primary" actionListener="#{crudDisco.agregarDisco()}">
+                                    <f:param name="productId" value="10" />
+                                </p:commandButton>
+                            </center>
+                            <br></br>
+                            <br></br>
+                            <p:panel id="tablaDiscos">
+                                <p:growl id="msgs" showDetail="true"/>
+                                <p:dataTable id="discos" var="car" value="#{crudDisco.listaDisco}" editable="true" style="margin-bottom:20px" paginator="true"         
+                                             rows="5"
+                                             rowsPerPageTemplate="5,10,15,100"
+                                             paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                             currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} registros" >
+
+                                    <p:ajax event="rowEdit" update=":form:msgs" />
+                                    <p:ajax event="rowEditCancel"  update=":form:msgs" />
+
+                                    <p:column headerText="Nombre Artista">
+                                        <p:cellEditor>
+                                            <f:facet name="output"><h:outputText value="#{car.artista}" /></f:facet>
+                                            <f:facet name="input"><p:inputText id="nombreDisco" value="#{car.artista}" style="width:100%"/></f:facet>
+                                        </p:cellEditor>
+                                    </p:column>
+
+                                    <p:column headerText="Nombre Disco">
+                                        <p:cellEditor>
+                                            <f:facet name="output"><h:outputText value="#{car.nombre}"/></f:facet>
+                                            <f:facet name="input">
+                                                <p:selectOneMenu id="artista" value="#{car.nombre}"  style="width:125px">
+                                                    <f:selectItems  value="#{crudDisco.nombresArtistas}"/>
+                                                </p:selectOneMenu>
+                                            </f:facet>
+                                        </p:cellEditor>
+                                    </p:column>
+
+                                    <p:column headerText="Formato">
+                                        <p:cellEditor>
+                                            <f:facet name="output"><h:outputText value="#{car.formato}" /></f:facet>
+                                            <f:facet name="input">
+                                                <p:selectOneMenu value="#{car.formato}" style="width:100%">
+                                                    <f:selectItems value ="#{crudDisco.formatos}" var="form" itemLabel="#{form}" itemValue="#{form}" />
+                                                </p:selectOneMenu>
+                                            </f:facet>
+                                        </p:cellEditor>
+                                    </p:column>
+                                    <p:column style="width:35px">
+                                        <p:rowEditor />
+                                    </p:column>
+                                    <p:column style="width: 70px">
+                                        <h:commandLink value="Eliminar" actionListener="#{crudDisco.eliminarDisco(car)}" />
+                                    </p:column>
+                                </p:dataTable>
+                            </p:panel>
+                        </font>
+                    </h:form>
+                </p:panel>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
