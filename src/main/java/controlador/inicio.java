@@ -32,17 +32,26 @@ public class inicio implements Serializable{
     public inicio() {
     }
     
-
+/**
+ * Verifica el tipo de usuario y le concede el acceso
+ * @return 
+ */
     public String iniciaSesion() {
         FacesContext context = FacesContext.getCurrentInstance();
         context.getExternalContext().getSessionMap().put("usuario", nombre);
         return "vistaCompra.xhtml";
     }
-
+/**
+ * 
+ * @return 
+ */
     public String getNombre() {
         return nombre;
     }
-
+/**
+ * 
+ * @param nombre 
+ */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

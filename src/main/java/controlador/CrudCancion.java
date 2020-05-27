@@ -39,12 +39,14 @@ public class CrudCancion implements Serializable {
     private List<String> nombreDiscos;
 
     /**
-     * Creates a new instance of CrudCancion
+     * Constructor de canción
      */
     public CrudCancion() {
         listaCanciones = new ArrayList<>();
     }
-
+/**
+ * Post constructor de canción injecta los datos de discos.
+ */
     @PostConstruct
     public void init() {
         lectura();
@@ -65,7 +67,9 @@ public class CrudCancion implements Serializable {
          }
          }
     }
-
+/**
+ * Crea y lee el archivo donde se almacenarán las canciones
+ */
     public void lectura() {
         try {
             FileInputStream fis = new FileInputStream("D:/Universidad/Linea/ProyectoDiscoTienda/Disco-Tienda/cancion.txt");
@@ -78,7 +82,9 @@ public class CrudCancion implements Serializable {
 
         }
     }
-
+/**
+ * agrega las canciones a la lista de canciones y actualiza el archivo de texto
+ */
     public void agregarCancion() {
         Cancion can = new Cancion(nombre, duracion, precio, disco);
         listaCanciones.add(can);
@@ -100,65 +106,110 @@ public class CrudCancion implements Serializable {
             Logger.getLogger(CrudArtista.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+/**
+ * Elimina canciones de la lista de canciones
+ * @param can 
+ */
     public void eliminarCancion(Cancion can) {
         listaCanciones.remove(can);
         FacesContext context = FacesContext.getCurrentInstance();
         context.getExternalContext().getSessionMap().put("listaCanciones", this.getListaCanciones());
     }
-
+/**
+ * 
+ * @return 
+ */
     public String getNombre() {
         return nombre;
     }
-
+/**
+ * 
+ * @param nombre 
+ */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+/**
+ * 
+ * @return 
+ */
     public String getDuracion() {
         return duracion;
     }
-
+/**
+ * 
+ * @param duracion 
+ */
     public void setDuracion(String duracion) {
         this.duracion = duracion;
     }
-
+/**
+ * 
+ * @return 
+ */
     public double getPrecio() {
         return precio;
     }
-
+/**
+ * 
+ * @param precio 
+ */
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-
+/**
+ * 
+ * @return 
+ */
     public List<Cancion> getListaCanciones() {
         return listaCanciones;
     }
-
+/**
+ * 
+ * @param listaCanciones 
+ */
     public void setListaCanciones(List<Cancion> listaCanciones) {
         this.listaCanciones = listaCanciones;
     }
-
+/**
+ * 
+ * @return 
+ */
     public List<Disco> getListaDisco() {
         return listaDisco;
     }
-
+/**
+ * 
+ * @param listaDisco 
+ */
     public void setListaDisco(List<Disco> listaDisco) {
         this.listaDisco = listaDisco;
     }
-
+/**
+ * 
+ * @return 
+ */
     public List<String> getNombreDiscos() {
         return nombreDiscos;
     }
-
+/**
+ * 
+ * @param nombreDiscos 
+ */
     public void setNombreDiscos(List<String> nombreDiscos) {
         this.nombreDiscos = nombreDiscos;
     }
-
+/**
+ * 
+ * @return 
+ */
     public String getDisco() {
         return disco;
     }
-
+/**
+ * 
+ * @param disco 
+ */
     public void setDisco(String disco) {
         this.disco = disco;
     }

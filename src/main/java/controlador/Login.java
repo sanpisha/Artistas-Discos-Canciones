@@ -31,29 +31,49 @@ public class Login implements Serializable{
      */
     public Login() {
     }
+    /**
+     * creación del usuario admin
+     */
     @PostConstruct
     public void creaAdmin(){
         Admin admin = new Admin("admin", "admin");
         FacesContext context = FacesContext.getCurrentInstance();
         context.getExternalContext().getSessionMap().put("admin", admin);
     }
+    /**
+     * le permite el acceso al usuario administrador
+     * @return 
+     */
     public String loguearse(){
         LogicaLogin logica = new LogicaLogin(username, password);
         logica.loguearse();
         return logica.getRedirecciona();
     }
+    /**
+     * 
+     * @return 
+     */
     public String getUsername() {
         return username;
     }
-
+/**
+ * 
+ * @param username 
+ */
     public void setUsername(String username) {
         this.username = username;
     }
-
+/**
+ * 
+ * @return 
+ */
     public String getPassword() {
         return password;
     }
-
+/**
+ * 
+ * @param password 
+ */
     public void setPassword(String password) {
         this.password = password;
     }

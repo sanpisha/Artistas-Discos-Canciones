@@ -18,7 +18,12 @@ public class Disco implements Serializable{
     private String artista;
     private String formato;
     
-
+/**
+ * 
+ * @param artista
+ * @param nombre
+ * @param formato 
+ */
     public Disco( String artista,String nombre, String formato) {
         
         this.nombre = nombre;
@@ -28,35 +33,59 @@ public class Disco implements Serializable{
     }
 
   
-
+/**
+ * 
+ * @return 
+ */
     public String getFormato() {
         return formato;
     }
-
+/**
+ * 
+ * @param formato 
+ */
     public void setFormato(String formato) {
         this.formato = formato;
     }
-
+/**
+ * 
+ * @return 
+ */
     public String getImagen() {
         return imagen;
     }
-
+/**
+ * 
+ * @param imagen 
+ */
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
-
+/**
+ * 
+ * @return 
+ */
     public String getNombre() {
         return nombre;
     }
-
+/**
+ * 
+ * @param nombre 
+ */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+/**
+ * 
+ * @return 
+ */
     public String getArtista() {
         return artista;
     }
-
+/**
+ * 
+ * @param artista 
+ */
     public void setArtista(String artista) {
         this.artista = artista;
     }    

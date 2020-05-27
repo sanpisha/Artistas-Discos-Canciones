@@ -41,15 +41,23 @@ public class CrudArtista implements Serializable {
     /**
      * Creates a new instance of CrudArtista
      */
+     /**
+      * Constructor
+      */
     public CrudArtista() {
         lista = new ArrayList<>();
     }
+    /**
+     * Post constructor
+     */
     @PostConstruct
     public void init(){
         lectura();
        
     }
-    
+    /**
+     * Lee el archivo creado para almacenar los artistas
+     */
     public void lectura(){
         try{
         FileInputStream fis = new FileInputStream("D:/Universidad/Linea/ProyectoDiscoTienda/Disco-Tienda/artista.txt");
@@ -63,7 +71,9 @@ public class CrudArtista implements Serializable {
         
     }
     }
-    
+    /**
+     * Agrega el artista a la lista y actualiza el archivo creado
+     */
     
     public void agregaArtista(){
         Artista art = new Artista(nombre, apellido, fechana);
@@ -88,50 +98,84 @@ public class CrudArtista implements Serializable {
         
      
     }
+    /**
+     * Elimina el artista de la lista de artistas
+     * @param art 
+     */
     public void eliminarArtista(Artista art){
         lista.remove(art);
         FacesContext context = FacesContext.getCurrentInstance();
         context.getExternalContext().getSessionMap().put("listaArtistas", this.getLista());
         
     }
-
+/**
+ * 
+ * @return 
+ */
     public String getRuta() {
         return ruta;
     }
-
+/**
+ * 
+ * @param ruta 
+ */
     public void setRuta(String ruta) {
         this.ruta = ruta;
     }
     
-    
+    /**
+     * 
+     * @return 
+     */
     public String getApellido() {
         return apellido;
     }
-
+/**
+ * 
+ * @param apellido 
+ */
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-
+/**
+ * 
+ * @return 
+ */
     public String getNombre() {
         return nombre;
     }
-
+/**
+ * 
+ * @param nombre 
+ */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+/**
+ * 
+ * @return 
+ */
     public Date getFechana() {
         return fechana;
     }
-
+/**
+ * 
+ * @param fechana 
+ */
     public void setFechana(Date fechana) {
         this.fechana = fechana;
     }
-
+/**
+ * 
+ * @return 
+ */
     public List<Artista> getLista() {
         return lista;
     }
-
+/**
+ * 
+ * @param lista 
+ */
     public void setLista(List<Artista> lista) {
         this.lista = lista;
     }

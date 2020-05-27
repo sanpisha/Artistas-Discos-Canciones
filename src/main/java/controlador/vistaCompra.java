@@ -40,7 +40,9 @@ public class vistaCompra implements Serializable{
      */
     public vistaCompra() {
     }
-
+/**
+ * inyecta la lista de canciones el nombre de las canciones, los discos y los artistas
+ */
     @PostConstruct
     public void init() {
         compra = new ArrayList<>();
@@ -74,92 +76,158 @@ public class vistaCompra implements Serializable{
         }
         usuario = (String) context.getExternalContext().getSessionMap().get("usuario");
     }
-
+/**
+ * 
+ * @param cancion 
+ */
     public void agregarCarritoPorDisco(Cancion cancion) {
       
           
     }
+    /**
+     * 
+     * @param disco 
+     */
     public void compra(Disco disco){
         
     }    
    
-
+/**
+ * 
+ * @param cancion 
+ */
     public void agregarCarritoPorCancion(Cancion cancion) {
        
     }
-
+/**
+ * 
+ */
     public void finalizarCompra() {
       
     }
-
+/**
+ * 
+ * @return 
+ */
     public String getUsuario() {
         return usuario;
     }
-
+/**
+ * 
+ * @param usuario 
+ */
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
-
+/**
+ * 
+ * @return 
+ */
     public List<Cancion> getListaCanciones() {
         return listaCanciones;
     }
-
+/**
+ * 
+ * @param listaCanciones 
+ */
     public void setListaCanciones(List<Cancion> listaCanciones) {
         this.listaCanciones = listaCanciones;
     }
-
+/**
+ * 
+ * @return 
+ */
     public List<Disco> getListaDiscos() {
         return listaDiscos;
     }
-
+/**
+ * 
+ * @param listaDiscos 
+ */
     public void setListaDiscos(List<Disco> listaDiscos) {
         this.listaDiscos = listaDiscos;
     }
-
+/**
+ * 
+ * @return 
+ */
     public List<Artista> getListaArtistas() {
         return listaArtistas;
     }
-
+/**
+ * 
+ * @param listaArtistas 
+ */
     public void setListaArtistas(List<Artista> listaArtistas) {
         this.listaArtistas = listaArtistas;
     }
-
+/**
+ * 
+ * @return 
+ */
     public List<String> getNombreCanciones() {
         return nombreCanciones;
     }
-
+/**
+ * 
+ * @param nombreCanciones 
+ */
     public void setNombreCanciones(List<String> nombreCanciones) {
         this.nombreCanciones = nombreCanciones;
     }
-
+/**
+ * 
+ * @return 
+ */
     public List<String> getNombreDiscos() {
         return nombreDiscos;
     }
-
+/**
+ * 
+ * @param nombreDiscos 
+ */
     public void setNombreDiscos(List<String> nombreDiscos) {
         this.nombreDiscos = nombreDiscos;
     }
-
+/**
+ * 
+ * @return 
+ */
     public List<String> getNombreArtistas() {
         return nombreArtistas;
     }
-
+/**
+ * 
+ * @param nombreArtistas 
+ */
     public void setNombreArtistas(List<String> nombreArtistas) {
         this.nombreArtistas = nombreArtistas;
     }
-
+/**
+ * 
+ * @return 
+ */
     public List<Cancion> getCompra() {
         return compra;
     }
-
+/**
+ * 
+ * @param compra 
+ */
     public void setCompra(List<Cancion> compra) {
         this.compra = compra;
     }
-
+/**
+ * 
+ * @return 
+ */
     public double getTotal() {
         return total;
     }
-
+/**
+ * 
+ * @param total 
+ */
     public void setTotal(double total) {
         this.total = total;
     }
