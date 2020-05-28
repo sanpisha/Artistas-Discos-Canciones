@@ -37,7 +37,7 @@
                                 <p:inputText id="nombre" value="#{crudCancion.nombre}" required="true" />
 
                                 <p:outputLabel value="Duración" />
-                                <p:calendar id="time" pattern="HH:mm:ss" value="#{crudCancion.duracion}" timeOnly="true" required="true" />
+                                <p:inputText id="time" value="#{crudCancion.duracion}" required="true" />
 
                                 <p:outputLabel value="Disco Canción " />
                                 <p:selectOneMenu id="disco" style="width:125px" value="#{crudCancion.disco}" required="true">
@@ -88,7 +88,7 @@
                                         <p:cellEditor>
                                             <f:facet name="output"><p:calendar pattern="HH:mm:ss" value="#{car.duracion}" timeOnly="true" disabled="true"/></f:facet>
                                             <f:facet name="input">
-                                                <p:calendar id="time" pattern="HH:mm:ss" value="#{car.duracion}" timeOnly="true" maxHour="0" required="true"/>
+                                                <p:inputText id="time" value="#{car.duracion}" required="true"/>
                                             </f:facet>
                                         </p:cellEditor>
                                     </p:column>

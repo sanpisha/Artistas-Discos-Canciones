@@ -15,8 +15,11 @@ import javax.faces.context.FacesContext;
 import Utilitarios.Artista;
 import Utilitarios.Cancion;
 import Utilitarios.Disco;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 //import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import logica.Compra;
 
 /**
  *
@@ -24,21 +27,25 @@ import javax.inject.Named;
  */
 
 @ManagedBean(name = "vistaCompra")
-@ViewScoped
+@SessionScoped
+
 public class vistaCompra implements Serializable{
 
     private String usuario;
+    
     private List<Cancion> listaCanciones;
     private List<Disco> listaDiscos;
     private List<Artista> listaArtistas;
     private List<String> nombreCanciones, nombreDiscos, nombreArtistas;
     private List<Cancion> compra;
     private double total;
+    
 
     /**
      * Creates a new instance of vistaCompra
      */
     public vistaCompra() {
+        compra = new ArrayList<>();
     }
 /**
  * inyecta la lista de canciones el nombre de las canciones, los discos y los artistas
@@ -78,33 +85,44 @@ public class vistaCompra implements Serializable{
     }
 /**
  * 
- * @param cancion 
+ * @param disco 
+ * Agrega el disco al carrito y obtiene la lista
  */
-    public void agregarCarritoPorDisco(Cancion cancion) {
-      
-          
+    public void agregarCarritoPorDisco(Disco disco) {
+        Compra logica = new Compra(listaCanciones, listaDiscos, listaArtistas, compra);
+        logica.compraPorAlbum(disco);
+        compra = logica.getCompra();
     }
-    /**
-     * 
-     * @param disco 
-     */
-    public void compra(Disco disco){
-        
-    }    
-   
 /**
- * 
+ * Agrega al carrito por canción y obtiene la lista
  * @param cancion 
  */
     public void agregarCarritoPorCancion(Cancion cancion) {
-       
+        Compra logica = new Compra(listaCanciones, listaDiscos, listaArtistas, compra);
+        logica.comprarPorCancion(cancion);
+        this.setCompra(logica.getCompra());
     }
-/**
- * 
- */
-    public void finalizarCompra() {
-      
+
+   
+       /**
+        * obtiene el valor total de la compra y redirecciona al la vista del recibo
+        * @return 
+        */
+        public String finalizarCompra() {
+        Compra logica = new Compra();
+        logica.finalizarCompra(compra);
+        total = logica.getTotal();
+        return ("reciboCompra.xhtml"); 
     }
+        /**
+         * vacia los campos
+         * @return 
+         */
+        public String limpiarLista(){
+        compra.clear();
+        return("inicio.xhtml");
+    }
+
 /**
  * 
  * @return 

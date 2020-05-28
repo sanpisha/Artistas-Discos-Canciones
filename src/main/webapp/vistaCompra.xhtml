@@ -52,9 +52,11 @@ and open the template in the editor.
 
                         <p:column headerText="Fecha de Nacimiento">
                             <p:cellEditor>
-                                <f:facet name="output"><h:outputText  value="#{car.fechana}">
+                                <f:facet name="output">
+                                    <h:outputText  value="#{car.fechana}">
                                         <f:convertDateTime pattern="dd/MM/yyyy" />
-                                    </h:outputText></f:facet>
+                                    </h:outputText>
+                                </f:facet>
                                 <f:facet name="input">
                                     <p:calendar id="fechaNacimiento" value="#{car.fechana}" required="true"/>
                                 </f:facet>
@@ -85,7 +87,7 @@ and open the template in the editor.
                         </p:column>
 
                         <p:column headerText="Comprar" style="width: 70px">
-                            <p:commandButton value="Comprar" action="#{vistaCompra.agregarCarritoPorDisco(cancion)}" />
+                            <p:commandButton value="Comprar" action="#{vistaCompra.agregarCarritoPorDisco(car)}" />
                         </p:column>
                     </p:dataTable>
 
@@ -147,34 +149,32 @@ and open the template in the editor.
                         </p:column>
 
                         <p:column headerText="comprar" style="width: 70px">
-                            <p:commandButton value="Comprar" action="#{vistaCompra.agregarCarritoPorCancion(cancion)}" />
+                            <p:commandButton value="Comprar" action="#{vistaCompra.agregarCarritoPorCancion(cancion)}"/>
                         </p:column>
                     </p:dataTable>
+                    <p:accordionPanel id="accordion">
+                        <p:tab title="Su compra" >
+                            <p:panelGrid id="pa" columns="1">
+                                <p:commandButton value="ver canciones" id="ajax" update="accordion"></p:commandButton>
+                                <p:panel id="pan">
+                                <p:dataTable id="cancionescompra" var="car" value="#{vistaCompra.compra}" style="margin-bottom:20px">
+                                    
 
-                    <p:panelGrid columns="1">
-                        <p:dataTable id="cancionescompra" var="car" value="#{vistaCompra.listaDiscos}" editable="false" style="margin-bottom:20px" paginator="true"         
-                                             rows="5"
-                                             rowsPerPageTemplate="5,10,15,100"
-                                             paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                             currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} registros">
+                                    <p:column headerText="Nombre Cancion">
+                                        <h:outputText value="#{car.nombre}" />
+                                    </p:column>
 
+                                    <p:column headerText="Precio Cancion">
+                                        <h:outputText value="#{car.precio}" />
+                                    </p:column>
 
-                            <p:column headerText="Discos">
-                                <p:cellEditor>
-                                    <f:facet name="output"><h:outputText value="#{car.nombre}" /></f:facet>
-                                    <f:facet name="input"><p:inputText id="nombreArtista" value="#{car.nombre}" style="width:100%"/></f:facet>
-                                </p:cellEditor>
-                            </p:column>
+                                </p:dataTable>
+                                </p:panel>
+                                <p:commandButton value="Finalizar Compra" action="#{vistaCompra.finalizarCompra()}"/>
+                            </p:panelGrid>
+                        </p:tab>
+                    </p:accordionPanel>
 
-                            <p:column headerText="Precio Disco">
-                                <p:cellEditor>
-                                    <f:facet name="output"><h:outputText value="#{vistaCompra.total}" /></f:facet>
-                                </p:cellEditor>
-                            </p:column>
-
-                        </p:dataTable>
-                        <p:commandButton value="Finalizar Compra" actionListener="#{vistaCompra.finalizarCompra()}"/>
-                    </p:panelGrid>
 
                     <br/>
                     <br/>

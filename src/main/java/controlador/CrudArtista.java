@@ -52,6 +52,12 @@ public class CrudArtista implements Serializable {
      */
     @PostConstruct
     public void init(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        if(context.getExternalContext().getSessionMap().get("listaArtista")== null){
+            lista = new ArrayList<>();
+        }else{
+            lista = (List<Artista>) context.getExternalContext().getSessionMap().get("listaArtista");
+        }
         lectura();
        
     }
@@ -94,7 +100,7 @@ public class CrudArtista implements Serializable {
          }catch(Exception ex){
              Logger.getLogger(CrudArtista.class.getName()).log(Level.SEVERE, null, ex);
          }
-        
+       
         
      
     }
