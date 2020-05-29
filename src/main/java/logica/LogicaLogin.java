@@ -40,7 +40,7 @@ public class LogicaLogin {
             this.setRedirecciona("crudArtista.xhtml");
         }
         else{
-            this.setRedirecciona("404.xhtml");
+            this.setRedirecciona("401.xhtml");
         }
     }
 /**
