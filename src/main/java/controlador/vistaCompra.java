@@ -39,6 +39,7 @@ public class vistaCompra implements Serializable{
     private List<String> nombreCanciones, nombreDiscos, nombreArtistas;
     private List<Cancion> compra;
     private double total;
+    public boolean bandera;
     
 
     /**
@@ -89,8 +90,9 @@ public class vistaCompra implements Serializable{
  * Agrega el disco al carrito y obtiene la lista
  */
     public void agregarCarritoPorDisco(Disco disco) {
+        this.bandera=true;
         Compra logica = new Compra(listaCanciones, listaDiscos, listaArtistas, compra);
-        logica.compraPorAlbum(disco);
+        logica.compraDisco(disco);
         compra = logica.getCompra();
     }
 /**
@@ -98,6 +100,7 @@ public class vistaCompra implements Serializable{
  * @param cancion 
  */
     public void agregarCarritoPorCancion(Cancion cancion) {
+        this.bandera=false;
         Compra logica = new Compra(listaCanciones, listaDiscos, listaArtistas, compra);
         logica.comprarPorCancion(cancion);
         this.setCompra(logica.getCompra());

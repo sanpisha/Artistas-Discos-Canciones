@@ -45,21 +45,22 @@ public class CrudArtista implements Serializable {
       * Constructor
       */
     public CrudArtista() {
-        lista = new ArrayList<>();
+        
     }
     /**
      * Post constructor
      */
     @PostConstruct
     public void init(){
+        lectura();
+       
         FacesContext context = FacesContext.getCurrentInstance();
         if(context.getExternalContext().getSessionMap().get("listaArtista")== null){
             lista = new ArrayList<>();
         }else{
             lista = (List<Artista>) context.getExternalContext().getSessionMap().get("listaArtista");
         }
-        lectura();
-       
+        
     }
     /**
      * Lee el archivo creado para almacenar los artistas

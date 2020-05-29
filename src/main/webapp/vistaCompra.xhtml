@@ -11,6 +11,9 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Compra</title>
+        <style type="text/css">
+        body {background:url("resources/fondo.png");}
+        </style>
         
     </h:head>
     <style type="text/css">
@@ -157,7 +160,11 @@ and open the template in the editor.
                             <p:panelGrid id="pa" columns="1">
                                 <p:commandButton value="ver canciones" id="ajax" update="accordion"></p:commandButton>
                                 <p:panel id="pan">
-                                <p:dataTable id="cancionescompra" var="car" value="#{vistaCompra.compra}" style="margin-bottom:20px">
+                                <p:dataTable id="cancionescompra" var="car" value="#{vistaCompra.compra}" style="margin-bottom:20px" paginator="true"         
+                                             rows="5"
+                                             rowsPerPageTemplate="5,10,15,100"
+                                             paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                             currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} registros">
                                     
 
                                     <p:column headerText="Nombre Cancion">
@@ -170,7 +177,7 @@ and open the template in the editor.
 
                                 </p:dataTable>
                                 </p:panel>
-                                <p:commandButton value="Finalizar Compra" action="#{vistaCompra.finalizarCompra()}"/>
+                                <p:commandButton value="Finalizar" action="#{vistaCompra.finalizarCompra()}"/>
                             </p:panelGrid>
                         </p:tab>
                     </p:accordionPanel>

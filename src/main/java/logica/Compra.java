@@ -15,18 +15,21 @@ import java.util.List;
  * @author Santiago Gómez
  */
 public class Compra {
+
     private List<Cancion> listaCanciones;
     private List<Disco> listaDiscos;
     private List<Artista> listaArtistas;
     private List<Cancion> compra;
     private double total = 0;
-/**
- * 
- * @param listaCanciones
- * @param listaDiscos 
- * @param listaArtistas
- * @param compra 
- */
+    public int bandera;
+
+    /**
+     *
+     * @param listaCanciones
+     * @param listaDiscos
+     * @param listaArtistas
+     * @param compra
+     */
     public Compra(List<Cancion> listaCanciones, List<Disco> listaDiscos, List<Artista> listaArtistas, List<Cancion> compra) {
         this.listaCanciones = listaCanciones;
         this.listaDiscos = listaDiscos;
@@ -37,123 +40,151 @@ public class Compra {
     public Compra() {
 
     }
-  
-   
-/**
- * Agrega la lista de albumes a una nueva lista
- * @param al 
- */
-    public void compraPorAlbum(Disco al) {
-       
+
+    /**
+     * Agrega la lista de albumes a una nueva lista
+     *
+     * @param al
+     */
+    public void compraDisco(Disco al) {
+
         for (Disco d : listaDiscos) {
             if (d.getNombre().equals(al.getNombre())) {
                 for (Cancion c : listaCanciones) {
+                    bandera = 1;
 
+                    System.out.print("bandera" + bandera);
                     if (c.getDisco().equals(al.getNombre())) {
-                        if(!compra.contains(c)){
-                             compra.add(c);
+                        if (!compra.contains(c)) {
+
+                            compra.add(c);
+
                         }
-                       
+
                     }
                 }
             }
         }
     }
-/**
- * Agrega a una lista para comprar por canción
- * @param can 
- */
+
+    /**
+     * Agrega a una lista para comprar por canción
+     *
+     * @param can
+     */
     public void comprarPorCancion(Cancion can) {
-       
+
         for (Cancion c : listaCanciones) {
 
             if (c.getNombre().equals(can.getNombre())) {
-                if(!compra.contains(can)){
+                if (!compra.contains(can)) {
+                    bandera = 0;
                     compra.add(c);
+
                 }
-                
+
             }
         }
     }
+
     /**
      * Calcula el total de la compra que se realiza
-     * @param compra 
+     *
+     * @param compra
      */
 
     public void finalizarCompra(List<Cancion> compra) {
         for (Cancion c : compra) {
-            total += c.getPrecio();
+            if (bandera == 1) {
+                double subtotal = 0;
+                subtotal += c.getPrecio();
+                total = subtotal - (subtotal * 0.01);
+            } else if (bandera == 0) {
+                total += c.getPrecio();
+            }
+
         }
+
     }
-/**
- * 
- * @return 
- */
+
+    /**
+     *
+     * @return
+     */
     public List<Cancion> getListaCanciones() {
         return listaCanciones;
     }
-/**
- * 
- * @param listaCanciones 
- */
+
+    /**
+     *
+     * @param listaCanciones
+     */
     public void setListaCanciones(List<Cancion> listaCanciones) {
         this.listaCanciones = listaCanciones;
     }
-/**
- * 
- * @return 
- */
+
+    /**
+     *
+     * @return
+     */
     public List<Disco> getListaAlbum() {
         return listaDiscos;
     }
-/**
- * 
- * @param listaAlbum 
- */
+
+    /**
+     *
+     * @param listaAlbum
+     */
     public void setListaAlbum(List<Disco> listaAlbum) {
         this.listaDiscos = listaAlbum;
     }
-/**
- * 
- * @return 
- */
+
+    /**
+     *
+     * @return
+     */
     public List<Artista> getListaArtistas() {
         return listaArtistas;
     }
-/**
- * 
- * @param listaArtistas 
- */
+
+    /**
+     *
+     * @param listaArtistas
+     */
     public void setListaArtistas(List<Artista> listaArtistas) {
         this.listaArtistas = listaArtistas;
     }
-/**
- * 
- * @return 
- */
+
+    /**
+     *
+     * @return
+     */
     public List<Cancion> getCompra() {
         return compra;
     }
-/**
- * 
- * @param compra 
- */
+
+    /**
+     *
+     * @param compra
+     */
     public void setCompra(List<Cancion> compra) {
         this.compra = compra;
     }
-/**
- * 
- * @return 
- */
+
+    /**
+     *
+     * @return
+     */
     public double getTotal() {
         return total;
     }
-/**
- * 
- * @param total 
- */
+
+    /**
+     *
+     * @param total
+     */
     public void setTotal(double total) {
         this.total = total;
     }
-    
+
 }
